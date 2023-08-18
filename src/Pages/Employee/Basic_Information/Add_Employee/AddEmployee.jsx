@@ -4,16 +4,18 @@ import {
   Card, CardContent, MenuItem, Menu, TextField,
   Typography, Box, Button, Grid, InputLabel, Select
 } from "@mui/material";
-import Breadcrumb from '../../../../Components/Common/BreadCrumb.jsx';
+import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { rows } from '../../../../Data/Dummy_Data/Dummy__Data.js'
 import { useTheme } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 
 const AddEmployee = () => {
   const [uploadedFrontImage, setUploadedFrontImage] = useState(null);
   const [uploadedBackImage, setUploadedBackImage] = useState(null);
   const [uploadedProfileImage, setUploadedProfileImage] = useState(null);
+  const theme = useTheme();
 
   const handleFileChange = (event, imageType) => {
     const file = event.target.files[0];
@@ -52,7 +54,27 @@ const AddEmployee = () => {
 
   return (
     <>
-      <Breadcrumb title="Add Employee" breadcrumbItem="Employee / Basic Information / Add Employee" />
+    <div style={{paddingTop: '0.7rem'}}>
+      <Typography variant="h5">Basic Information</Typography>
+      <Breadcrumbs
+        aria-label="breadcrumb"
+        sx={{ color: theme.palette.gray.main, padding: "0" }}
+      >
+        <Link underline="hover" href="/">
+          <Typography variant="body2" sx={{ color: theme.palette.gray.main }}>
+            Employee
+          </Typography>
+        </Link>
+        <Link
+          underline="hover"
+          href="/material-ui/getting-started/installation/"
+        >
+          <Typography variant="body2" sx={{ color: theme.palette.gray.main }}>
+            Basic Information
+          </Typography>
+        </Link>
+      </Breadcrumbs>
+      </div>
       <Box component={Card} sx={{ mt: 3, pt: 2 }}>
         <CardContent>
           <form>
